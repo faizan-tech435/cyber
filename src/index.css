@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 7%;
+    --foreground: 213 31% 91%;
+    --card: 222 45% 10%;
+    --card-foreground: 213 31% 91%;
+    --popover: 222 45% 9%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 7%;
+    --secondary: 222 40% 14%;
+    --secondary-foreground: 213 31% 91%;
+    --muted: 222 40% 14%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 222 40% 16%;
+    --accent-foreground: 213 31% 91%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 213 31% 91%;
+    --border: 222 40% 16%;
+    --input: 222 40% 14%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(222 47% 7%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(222 40% 20%);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(222 40% 28%);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .glass-card {
+    background: hsl(222 45% 10% / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(222 40% 18%);
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(217 91% 60% / 0.4), hsl(189 94% 43% / 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .severity-critical {
+    @apply bg-red-500/15 text-red-400 border border-red-500/30;
+  }
+  .severity-high {
+    @apply bg-orange-500/15 text-orange-400 border border-orange-500/30;
+  }
+  .severity-medium {
+    @apply bg-amber-500/15 text-amber-400 border border-amber-500/30;
+  }
+  .severity-low {
+    @apply bg-emerald-500/15 text-emerald-400 border border-emerald-500/30;
+  }
+
+  .status-submitted {
+    @apply bg-blue-500/15 text-blue-400 border border-blue-500/30;
+  }
+  .status-review {
+    @apply bg-purple-500/15 text-purple-400 border border-purple-500/30;
+  }
+  .status-investigating {
+    @apply bg-amber-500/15 text-amber-400 border border-amber-500/30;
+  }
+  .status-resolved {
+    @apply bg-emerald-500/15 text-emerald-400 border border-emerald-500/30;
+  }
+  .status-closed {
+    @apply bg-slate-500/15 text-slate-400 border border-slate-500/30;
+  }
+}
